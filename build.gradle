@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.diffplug.spotless' version '6.25.0'
 }
 
 group = 'org.demo'
@@ -10,10 +12,26 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.github.tomakehurst:wiremock-jre8:2.35.0'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
+spotless {
+    java {
+        googleJavaFormat('1.17.0') // Uses Google's style guide
+        target 'src/**/*.java'
+    }
+}
+
+tasks.named("compileJava").configure {
+    dependsOn "spotlessApply"
+}
+
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass = 'org.demo.Main'
 }

@@ -1,0 +1,12 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/hello"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "message": "Hello from REST!"
+        }
+    }
+}
